@@ -1,16 +1,31 @@
-# React + Vite
+# Invoice App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive invoice management application built with React + Vite.
 
-Currently, two official plugins are available:
+> 🚧 Currently in development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features (in progress)
+- View and filter invoices by status
+- Create, edit and delete invoices
+- Mark invoices as paid
+- Persistent data with localStorage
+- Fully responsive — mobile and desktop
 
-## React Compiler
+## Tech Stack
+- React 18
+- React Router v6
+- Plain CSS with CSS Variables
+- Vite
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Running Locally
 
-## Expanding the ESLint configuration
+git clone https://github.com/YOUR_USERNAME/invoice-app.git
+cd invoice-app
+npm install
+npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Screenshots
+_Coming soon_
+
+## Live Demo
+_Coming soon — will be deployed on Vercel_
