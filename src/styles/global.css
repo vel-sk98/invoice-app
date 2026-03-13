@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Manrope:wght@200..800&family=Playwrite+NZ+Basic+Guides&display=swap');
+
+*, *::before, *::after{
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
+}
+
+:root{
+    --color-purple:     #7C5DFA;
+  --color-purple-light: #9277FF;
+  --color-dark-navy:  #1E2139;
+  --color-navy:       #252945;
+  --color-grey-light: #DFE3FA;
+  --color-grey:       #888EB0;
+  --color-blue-grey:  #7E88C3;
+  --color-off-white:  #F8F8FB;
+  --color-white:      #FFFFFF;
+  --color-red:        #EC5757;
+  --color-red-light:  #FF9797;
+
+  --font-size-sm:  11px;
+  --font-size-md:  12px;
+  --font-size-lg:  15px;
+  --font-size-xl:  20px;
+  --font-size-xxl: 32px;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 20px;
+
+  --shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.10);
+}
+
+body{
+    font-family: "League Spartan", sans-serif;
+    background-color: var(--color-off-white);
+    color: var(--color-dark-navy);
+    min-height: 100vh;
+}
+button{
+    cursor:pointer;
+    border:none;
+    background: none;
+    font-family: inherit;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
