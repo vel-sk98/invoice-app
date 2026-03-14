@@ -2,7 +2,7 @@ import React from 'react'
 import logo from '../assets/logo.svg';
 import moon from '../assets/icon-moon.svg'
 import user from '../assets/image-avatar.jpg'
-import '../components/Sidebar.css'
+import './Sidebar.css'
 const Sidebar = () => {
   return (
       <div className='sidebar'>
@@ -10,7 +10,7 @@ const Sidebar = () => {
               <img src={logo} alt='logo' className='logo' />
           </div>
           <div className='sidebar-bottom'>
-              <img src={moon} alt='theme' className='theme'></img>
+              <img src={moon} alt='Toggle theme' className='theme'></img>
               <hr/>
               <img src={user} alt='user' className='user'></img>
           </div>
