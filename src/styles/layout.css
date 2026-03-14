@@ -1,0 +1,9 @@
+.hero{
+    display:flex;
+    min-height: 100vh;
+
+}
+.hero-content{
+    flex:1;
+    padding:20px;
+}
