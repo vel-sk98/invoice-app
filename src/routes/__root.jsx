@@ -4,15 +4,16 @@ import '../styles/layout.css'
 
 export const Route = createRootRoute(
     {
-        component: () =>{
+        component: () => {
             return (
                 <div className="hero">
                     <Sidebar />
                     <main className="hero-content">
                         <Outlet />
                     </main>
-                    
+
                 </div>
-            )}
+            )
+        }
     }
 ) 
