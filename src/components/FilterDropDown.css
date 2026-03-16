@@ -1,0 +1,45 @@
+.drop-down{
+    position:relative;
+}
+
+.filter-btn{
+    font-size: var(--font-size-lg);
+    font-weight: bold;
+    padding:5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+   
+}
+.filter-btn img{
+    padding-left: 10px;
+    transition: transform 0.2s ease;
+}
+.arrow-open{
+    transform: rotate(180deg);
+}
+.content{
+    position: absolute;
+    width: 130px;
+    border-radius: 8px;
+    box-shadow: 0px 10px 20px 0px rgba(72, 84, 159, 0.25);
+    padding: 24px;
+
+}
+.content label {
+    display: flex;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.25px;
+}
+
+.content input[type='checkbox']{
+    accent-color: var(--color-purple);
+    cursor: pointer;
+}
+
+

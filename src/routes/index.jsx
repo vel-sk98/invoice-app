@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import '../styles/invoices.css'
 import InvoiceCard from "../components/InvoiceCard";
 import data from "../data/invoices";
-import arrow from '../assets/icon-arrow-down.svg';
 import EmptyState from "../components/EmptyState";
+import FilterDropDown from "../components/FilterDropDown";
 
 export const Route = createFileRoute('/')({
     component: InvoiceList,
@@ -19,10 +19,7 @@ function InvoiceList() {
                 </div>
                 <div className="heading-right">
 
-                    <button className="filter-btn">
-                        Filter by status
-                        <img src={arrow} alt='down arrow' />
-                    </button>
+                    <FilterDropDown/>
 
                     <button className="new-btn">
                         <span className="plus">+</span>
