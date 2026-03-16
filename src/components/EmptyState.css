@@ -1,0 +1,32 @@
+.empty{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:40px;
+    flex:1;
+
+
+}
+.empty-illustration{
+    width:241px;
+    height: auto;
+    
+}
+.empty-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+.empty-content h2{
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+.empty-content p{
+    max-width: 175px;
+    line-height: 15px;
+    letter-spacing: -0.1px; 
+    font-size: var(--font-size-md);
+    color: var(--color-grey);
+}

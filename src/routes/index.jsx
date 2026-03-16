@@ -3,6 +3,7 @@ import '../styles/invoices.css'
 import InvoiceCard from "../components/InvoiceCard";
 import data from "../data/invoices";
 import arrow from '../assets/icon-arrow-down.svg';
+import EmptyState from "../components/EmptyState";
 
 export const Route = createFileRoute('/')({
     component: InvoiceList,
@@ -14,7 +15,7 @@ function InvoiceList() {
             <div className="main-content">
                 <div>
                     <h1>Invoices</h1>
-                    <p>There are 7 total invoices</p>
+                    <p>No invoices</p>
                 </div>
                 <div className="heading-right">
 
@@ -30,11 +31,13 @@ function InvoiceList() {
 
                 </div>
             </div>
-            <div className="invoice-list">
+
+            <EmptyState />
+            {/* <div className="invoice-list">
                 <InvoiceCard invoiceData={data[0]} />
                 <InvoiceCard invoiceData={data[1]} />
                 <InvoiceCard invoiceData={data[2]} />
-            </div>
+            </div> */}
 
         </div>
     )
