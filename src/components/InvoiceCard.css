@@ -2,7 +2,7 @@
     width:100% ;
     height:72px;
     display:grid;
-    grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1.5fr 1fr 1.2fr .5fr;
     box-shadow: var(--shadow);
     background-color: var(--color-navy-light);
     border-radius: 8px;
@@ -33,27 +33,7 @@
     letter-spacing: -0.25px;
     justify-self:right;
 }
-.badge { 
-    border-radius: 6px; 
-    padding: 4px 12px; 
-    font-weight: 700; 
-    font-size: 15px;
-    justify-self: center;
-    align-self: center;
 
-}
-.badge--paid    { 
-    color: #33D69F; 
-    background-color: rgba(51, 214, 159, 0.06);
-}
-.badge--pending { 
-    color: #FF8F00; 
-    background-color: rgba(255, 143, 0, 0.06);
-}
-.badge--draft{ 
-    color: #373B53; 
-    background-color: rgba(223, 227, 250, 0.06);
-}
 .col6{
     justify-self: end;
 }

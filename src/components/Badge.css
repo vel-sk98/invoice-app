@@ -1,0 +1,23 @@
+.badge { 
+    border-radius: 6px; 
+    padding: 4px 12px; 
+    font-weight: 700; 
+    font-size: 15px;
+    justify-self: center;
+    align-self:center;
+}
+.badge-dot{
+    padding:5px;
+}
+.badge--paid    { 
+    color: #33D69F; 
+    background-color: rgba(51, 214, 159, 0.06);
+}
+.badge--pending { 
+    color: #FF8F00; 
+    background-color: rgba(255, 143, 0, 0.06);
+}
+.badge--draft{ 
+    color: #373B53; 
+    background-color: rgba(223, 237, 250, 0);
+}
