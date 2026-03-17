@@ -1,5 +1,5 @@
 import React from 'react'
-import arrow from '../assets/icon-arrow-down.svg';
+import arrow from '../../assets/icon-arrow-down.svg';
 import { useState } from 'react';
 import './FilterDropDown.css'
 const FilterDropDown = () => {

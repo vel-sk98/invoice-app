@@ -33,7 +33,11 @@
     letter-spacing: -0.25px;
     justify-self:right;
 }
-
+.col5 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .col6{
     justify-self: end;
 }

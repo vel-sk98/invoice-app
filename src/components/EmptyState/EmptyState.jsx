@@ -1,5 +1,5 @@
 import './EmptyState.css'
-import empty from '../assets/illustration-empty.svg'
+import empty from '../../assets/illustration-empty.svg'
 const EmptyState = () => {
   return (
       <div className='empty'>

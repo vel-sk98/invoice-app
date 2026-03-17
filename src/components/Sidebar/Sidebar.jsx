@@ -1,7 +1,7 @@
 import React from 'react'
-import logo from '../assets/logo.svg';
-import moon from '../assets/icon-moon.svg'
-import user from '../assets/image-avatar.jpg'
+import logo from '../../assets/logo.svg';
+import moon from '../../assets/icon-moon.svg'
+import user from '../../assets/image-avatar.jpg'
 import './Sidebar.css'
 const Sidebar = () => {
   return (

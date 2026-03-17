@@ -1,6 +1,7 @@
 .hero{
     display:flex;
     min-height: 100vh;
+    justify-content: space-between;
 
 }
 .hero-content{
