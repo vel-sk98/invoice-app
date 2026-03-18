@@ -3,6 +3,7 @@ import '../styles/invoice-detail.css'
 import Badge from "../components/Badge/Badge";
 import { Link } from "@tanstack/react-router";
 import arrow from '../assets/icon-arrow-left.svg';
+import Button from "../components/Button/Button";
 
 export const Route = createFileRoute('/invoice/$id')({
     component: InvoiceDetail,
@@ -41,9 +42,10 @@ function InvoiceDetail() {
                         <span>Status</span>
                         <Badge status={invoice.status} /> </label>
 
-                    <button className="status-edit">Edit</button>
-                    <button className="status-delete">Delete</button>
-                    <button className="status-paid">Mark as Paid</button>
+            
+                    <Button variant="edit" children="Edit" />
+                    <Button variant="danger" children="Delete" />
+                    <Button variant="primary" children="Mark as Paid"/>
                 </div>
 
                 <div className="invoice-detail-content">

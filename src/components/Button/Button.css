@@ -1,0 +1,36 @@
+.btn{
+    border:none;
+    cursor: pointer;
+    border-radius: 24px;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    padding: 18px 23px 15px 24px;
+}
+.btn:hover{
+    filter: brightness(1.2);
+
+}
+.btn:disabled{
+    cursor:not-allowed;
+    opacity: 0.5;
+}
+.primary{
+    color: var( --color-white);
+    background-color: var(--color-purple);
+}
+.edit{
+    color: var(--color-blue-grey);
+    background-color: var(--color-smokewhite);
+}
+.danger{
+    color: var( --color-white);
+    background-color: var(--color-red);
+}
+.soft{
+    font-weight: 700;
+    background-color:var( --color-white);
+}
+.ghost{
+    background-color: var(--color-light-black);
+    color: var(--color-grey);
+}

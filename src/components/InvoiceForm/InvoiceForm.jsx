@@ -1,6 +1,7 @@
 import React from 'react';
 import './InvoiceForm.css';
 import icon from '../../assets/icon-delete.svg';
+import Button from '../Button/Button';
 
 const InvoiceForm = ({ isOpen, onClose, mode }) => {
     return (
@@ -70,9 +71,9 @@ const InvoiceForm = ({ isOpen, onClose, mode }) => {
             </table>
             <button className="add-item-btn">+ Add New Item</button>
             <div className='form-buttons'>
-                <button onClick={onClose} className='form-button-dis'>Discard</button>
-                <button className='form-button-sd'>Save as Draft</button>
-                <button className='form-button-ss'>Save & Send</button>
+                    <Button variant='soft' children="Discard" onClick={onClose} />
+                    <Button variant='ghost' children="Save & Draft" />
+                    <Button variant='primary' children="Save & Send" />
             </div>
             </div>
         </div>    

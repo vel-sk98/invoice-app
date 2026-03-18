@@ -41,22 +41,8 @@
     border-radius: 24px;
     margin: 4px;
 }
-.status-edit{
-    color: var(--color-blue-grey);
-    padding: 18px 25px 15px 24px;
-    border:none;
-}
-.status-delete{
-    align-items: center;
-    color: var( --color-white);
-    background-color: var(--color-red);
-    padding: 18px 25px 15px 24px;
-}
-.status-paid{
-    color: var( --color-white);
-    background-color: var(--color-purple);
-    padding: 18px 25px 15px 24px;
-}
+
+
 .invoice-detail-sender{
     display:grid;
     grid-template-columns:1fr 1fr;
