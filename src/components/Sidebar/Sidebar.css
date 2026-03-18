@@ -7,7 +7,7 @@
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;
     align-items: center;
-    
+    z-index: 20;
 }
 .sidebar-logo{
       background-color: var(--color-purple);

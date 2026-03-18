@@ -13,11 +13,13 @@
   --color-navy:       #252945;
   --color-grey-light: #DFE3FA;
   --color-grey:       #888EB0;
+  --color-dark-grey: #777F98;
   --color-blue-grey:  #7E88C3;
   --color-off-white:  #F8F8FB;
   --color-white:      #FFFFFF;
   --color-red:        #EC5757;
   --color-red-light:  #FF9797;
+  --color-light-black:#373B53;
 
   --font-size-sm:  11px;
   --font-size-md:  12px;

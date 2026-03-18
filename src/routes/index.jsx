@@ -4,12 +4,15 @@ import InvoiceCard from "../components/InvoiceCard/InvoiceCard";
 import data from "../data/invoices";
 import EmptyState from "../components/EmptyState/EmptyState";
 import FilterDropDown from "../components/FilterDropDown/FilterDropDown";
+import InvoiceForm from "../components/InvoiceForm/InvoiceForm";
+import { useState } from "react";
 
 export const Route = createFileRoute('/')({
     component: InvoiceList,
 })
 
 function InvoiceList() {
+    const [isFormOpen, setIsFormOpen] = useState(false)
     return (
         <div className="main">
             <div className="main-content">
@@ -21,7 +24,7 @@ function InvoiceList() {
 
                     <FilterDropDown />
 
-                    <button className="new-btn">
+                    <button className="new-btn" onClick={() => setIsFormOpen(true)}>
                         <span className="plus">+</span>
                         <span>New Invoice</span>
                     </button>
@@ -35,6 +38,7 @@ function InvoiceList() {
                 <InvoiceCard invoiceData={data[1]} />
                 <InvoiceCard invoiceData={data[2]} />
             </div> */}
+            <InvoiceForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} mode="new" />
 
         </div>
     )
