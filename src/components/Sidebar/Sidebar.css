@@ -2,10 +2,9 @@
     display:flex;
     background-color: var(--color-navy);
     justify-content:space-between;
-    flex-direction: column;
-    width: 103px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
+    flex-direction: row;
+    height: 103px;
+    width: 100%;
     align-items: center;
     z-index: 20;
 }
@@ -21,12 +20,10 @@
 }
 .sidebar-bottom{
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
     padding: 20px; 
     align-items:center;
-    
-
 }
 .logo{
     width: 40px;
@@ -34,14 +31,29 @@
 .user{
     width: 40px;
     border-radius: 20px;
+    margin:15px
 }
 .theme{
     width:20px;
-
+    margin:15px
 }
 .sidebar-bottom hr{
-    width: 100%;
-    border:none;
-    border-top: 1px solid #494e6e;
-    margin: 0;
+    height: 103px;  
+}
+@media (min-width:769px ) {
+    .sidebar{
+        flex-direction: column;
+        width: 103px;
+        height: auto;
+        border-bottom-right-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    .sidebar-bottom{
+        flex-direction: column;
+    }
+    .sidebar-bottom hr{
+        width: 103px;
+        height: auto;
+    }
+    
 }

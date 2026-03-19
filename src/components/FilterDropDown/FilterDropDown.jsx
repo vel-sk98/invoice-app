@@ -13,7 +13,8 @@ const FilterDropDown = () => {
     return (
         <div className='drop-down'>
             <button className="filter-btn" onClick={statusFilter}>
-                Filter by status
+                <span className='filter-desk'>Filter by status</span>
+                <span className='filter-mob'>Filter</span>
                 <img src={arrow} alt='down arrow' className={show ? "arrow-open" : ''} />
             </button>
             {show &&

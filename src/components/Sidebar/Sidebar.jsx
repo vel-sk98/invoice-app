@@ -11,7 +11,8 @@ const Sidebar = () => {
           </div>
           <div className='sidebar-bottom'>
               <img src={moon} alt='Toggle theme' className='theme'></img>
-              <hr/>
+              <hr />
+              
               <img src={user} alt='user' className='user'></img>
           </div>
       </div>

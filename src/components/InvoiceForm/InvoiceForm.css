@@ -1,181 +1,258 @@
+/* invoiceForm.css — mobile-first */
+
 .overlay--open {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* dark overlay */
-  z-index: 5;
-} 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+}
+
 .form-panel {
     position: fixed;
     top: 0;
-    left: 103px;
+    left: 0;
     height: 100vh;
-    width: 616px;
+    width: 100%;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
     z-index: 10;
-    background-color:var(--color-white) ;
-    padding: 59px 56px 32px 56px;
-    border-radius:0 20px 20px 0;
+    background-color: var(--color-white);
+    padding: 33px 24px 32px 24px;
+    border-radius: 0;
     overflow-y: auto;
 }
 
 .form-panel--open {
     transform: translateX(0);
 }
+
 .form-panel p {
     font-size: 15px;
     font-weight: 800;
     line-height: 15px;
     letter-spacing: -0.25px;
-    color:var(--color-purple);
-    padding-bottom:24px;
-    padding-top:46px;
+    color: var(--color-purple);
+    padding-bottom: 24px;
+    padding-top: 46px;
 }
-.bill-from{
+
+.form-panel h3 {
+    font-size: 18px;
+    line-height: 32px;
+    letter-spacing: -0.38px;
+    color: var(--color-dark-grey);
+    padding-top: 32px;
+    padding-bottom: 14px;
+}
+
+/* --- Bill From --- */
+
+.bill-from {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap:15px;
-
+    gap: 15px;
 }
 
-.bill-from input, .bill-to input, .bill-to-sec input{
-    width:100%;
+.bill-from input,
+.bill-to input,
+.bill-to-sec input,
+.table-desktop input {
+    width: 100%;
     height: 48px;
     border-radius: 4px;
     border: 1px solid var(--color-grey-light);
-    padding:10px;
-}
-.bill-to-sec select{
-      width:100%;
-    height: 48px;
-    border-radius: 4px;
-    border: 1px solid var(--color-grey-light);
-    padding:10px;
-}
-.bill-to-sec option{
-    font-size: 15px;
-    line-height: 15px;
-    letter-spacing: -0.25px;
-    font-weight: 800;
-    cursor: pointer;
-    font-family:"League Spartan", sans-serif;
-    
+    padding: 10px;
 }
 
-.bill-from label, .bill-to label, .bill-to-sec label{
+.bill-from label,
+.bill-to label,
+.bill-to-sec label {
     font-size: var(--font-size-md);
     line-height: 30px;
     letter-spacing: -0.1px;
     font-weight: 600;
     color: var(--color-blue-grey);
 }
-.bill1{
-    grid-column:1/ span 3;
-    grid-row:1;
-}
-.bill2{
-    grid-column:1;
-    grid-row:2;
 
+.bill1 {
+    grid-column: 1 / span 3;
+    grid-row: 1;
 }
-.bill3 { 
-    grid-column: 2; 
+
+.bill2 {
+    grid-column: 1;
     grid-row: 2;
- }
-.bill4 { 
-    grid-column: 3; 
-    grid-row: 2; 
 }
 
+.bill3 {
+    grid-column: 2;
+    grid-row: 2;
+}
 
-.bill-to{
+.bill4 {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+/* --- Bill To --- */
+
+.bill-to {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    gap:15px;
+    gap: 15px;
     padding-bottom: 15px;
 }
 
-.bill-to1{
-    grid-column:1/ span 3;
-    grid-row:1;
-}
-.bill-to2{
-    grid-column:1/ span 3;
-    grid-row:2;
-}
-.bill-to3{
-    grid-column:1/ span 3;
-    grid-row:3;
-}
-.bill-to4 { 
-    grid-column: 1; 
-    grid-row: 4; 
-}
-.bill-to5 { 
-    grid-column: 2; 
-    grid-row: 4; 
-}
-.bill-to6 { 
-    grid-column: 3; 
-    grid-row: 4; 
+.bill-to1 {
+    grid-column: 1 / span 3;
+    grid-row: 1;
 }
 
+.bill-to2 {
+    grid-column: 1 / span 3;
+    grid-row: 2;
+}
 
+.bill-to3 {
+    grid-column: 1 / span 3;
+    grid-row: 3;
+}
 
-.bill-to-sec{
+.bill-to4 {
+    grid-column: 1;
+    grid-row: 4;
+}
+
+.bill-to5 {
+    grid-column: 2;
+    grid-row: 4;
+}
+
+.bill-to6 {
+    grid-column: 3;
+    grid-row: 4;
+}
+
+/* --- Bill To Section --- */
+
+.bill-to-sec {
     display: grid;
-    grid-template-columns: 1fr 1fr ;
-    grid-template-rows: 1fr 1fr ;
-    gap:15px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 15px;
 }
 
-
-.bill-to9{
-    grid-column:1/ span 2;
-    grid-row:2;
-}
-.form-panel h3{
-    font-size:18px;
-    line-height: 32px;
-    letter-spacing: -0.38px;
-    color: var(--color-dark-grey);
-    padding-top:32px;
-    padding-bottom: 14px;
+.bill-to-sec select {
+    width: 100%;
+    height: 48px;
+    border-radius: 4px;
+    border: 1px solid var(--color-grey-light);
+    padding: 10px;
 }
 
-.add-item-btn{
-    width:100%;
+.bill-to-sec option {
+    font-size: 15px;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    font-weight: 800;
+    cursor: pointer;
+    font-family: "League Spartan", sans-serif;
+}
+
+.bill-to9 {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+}
+
+/* --- Item Table --- */
+
+.table-desktop {
+    display: none;
+}
+
+.table-mobile {
+    display: block;
+}
+
+/* --- Add Item Button --- */
+
+.add-item-btn {
+    width: 100%;
     background-color: var(--color-grey-light);
-    padding-top:18px;
-    padding-bottom:15px;
+    padding-top: 18px;
+    padding-bottom: 15px;
     color: var(--color-blue-grey);
     font-size: 15px;
     line-height: 15px;
     font-weight: 600;
     border-radius: 24px;
-
-} 
-
-.form-buttons{
-     display:grid;
-    grid-template-columns: 2fr 1fr 1fr ;
-    gap:8px;
-    position: sticky;
-    bottom: 0;
-    padding-top: 39px;
-    background-color: var(--color-white);
-    
 }
 
+/* --- Form Buttons --- */
 
-.bill-from input:focus,.bill-to-sec select:focus,
+.form-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    position: sticky;
+    bottom: 0;
+    padding: 22px 24px;
+    background-color: var(--color-white);
+}
+
+/* --- Focus States --- */
+
+.bill-from input:focus,
+.bill-to-sec select:focus,
 .bill-to input:focus,
 .bill-to-sec input:focus {
     outline: none;
     border-color: var(--color-purple);
+}
+
+/* --- Go Back (mobile only) --- */
+
+.go-back-mob {
+    display: block;
+    padding-bottom: 26px;
+}
+
+.highlight {
+    width: 100%;
+}
+
+/* --- Tablet / Desktop --- */
+
+@media (min-width: 769px) {
+    .form-panel {
+        left: 103px;
+        width: 616px;
+        border-radius: 0 20px 20px 0;
+    }
+
+    .table-desktop {
+        display: block;
+        table-layout: fixed
+    }
+
+    .table-mobile {
+        display: none;
+    }
+
+    .form-buttons {
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+
+    .go-back-mob {
+        display: none;
+    }
+
+    .highlight {
+        width: auto;
+    }
 }

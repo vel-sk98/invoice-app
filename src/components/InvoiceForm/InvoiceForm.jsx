@@ -2,14 +2,22 @@ import React from 'react';
 import './InvoiceForm.css';
 import icon from '../../assets/icon-delete.svg';
 import Button from '../Button/Button';
+import { Link } from "@tanstack/react-router";
+import arrow from '../../assets/icon-arrow-left.svg';
 
 const InvoiceForm = ({ isOpen, onClose, mode }) => {
     return (
         <div>
             <div className={`overlay ${isOpen ? 'overlay--open' : ''}`}>
             </div>
+            
+
         <div className={`form-panel ${isOpen ? 'form-panel--open' : ''}`}>
-            {/* form content */}
+                {/* form content */}
+                
+                <button className="go-back-mob" onClick={onClose} >  <img src={arrow} alt="go-back" /> Go back</button>
+                
+
                 <h2>{mode.charAt(0).toUpperCase() + mode.slice(1)} Invoice</h2>
             <div >
                 <p>Bill From</p>
@@ -49,7 +57,7 @@ const InvoiceForm = ({ isOpen, onClose, mode }) => {
                 <h3>Item List</h3>
             </div>
 
-            <table>
+            <table className='table-desktop'>
                 <thead>
                     <tr>
                         <th>ItemName</th>
@@ -67,8 +75,39 @@ const InvoiceForm = ({ isOpen, onClose, mode }) => {
                         <td><img src={icon} alt='delete' /></td>
                     </tr>
                 </tbody>
-
-            </table>
+                </table>
+                
+                <table className='table-mobile'>
+                    <thead>
+                        <tr>
+                            <th colSpan="5">ItemName</th>
+                        </tr>
+                    </thead> 
+                    <tbody>
+                        <tr>
+                            <td colSpan="5" className="highlight">Banner Design</td>
+                        </tr>
+                    </tbody> 
+                    
+                    <thead>
+                        <tr>
+                            
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                       
+                    <tbody>
+                        <tr>
+                            
+                            <td>1</td>
+                            <td>156.00</td>
+                            <td className="highlight">156.00</td>
+                            <td><img src={icon} alt='delete' /></td>
+                        </tr>
+                    </tbody>
+                </table>   
             <button className="add-item-btn">+ Add New Item</button>
             <div className='form-buttons'>
                     <Button variant='soft' children="Discard" onClick={onClose} />

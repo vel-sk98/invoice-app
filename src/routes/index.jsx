@@ -26,7 +26,8 @@ function InvoiceList() {
 
                     <button className="new-btn" onClick={() => setIsFormOpen(true)}>
                         <span className="plus">+</span>
-                        <span>New Invoice</span>
+                        <span className="new-desktop">New Invoice</span>
+                        <span className="new-mobile">New</span>
                     </button>
 
                 </div>

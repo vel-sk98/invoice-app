@@ -37,15 +37,21 @@ function InvoiceDetail() {
                     </Link>
                 </div>
 
-                <div className="status-bar">
+                <div className="status-bar-desktop">
                     <label className="status">
                         <span>Status</span>
                         <Badge status={invoice.status} /> </label>
 
-            
+                    
                     <Button variant="edit" children="Edit" />
                     <Button variant="danger" children="Delete" />
-                    <Button variant="primary" children="Mark as Paid"/>
+                    <Button variant="primary" children="Mark as Paid" />
+                       
+                </div>
+                <div className="status-bar-mobile">
+                    <label className="status">
+                        <span>Status</span>
+                        <Badge status={invoice.status} /> </label>
                 </div>
 
                 <div className="invoice-detail-content">
@@ -88,7 +94,7 @@ function InvoiceDetail() {
                         </div>
                     </div>
 
-                    <table>
+                    <table className="table-desk">
                         <thead>
                             <tr>
                                 <th>ItemName</th>
@@ -104,15 +110,37 @@ function InvoiceDetail() {
                                     <td>{item.quantity}</td>
                                     <td>£{item.price}</td>
                                     <td className="highlight">£{item.total}</td>
+                                    <td></td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
+
+                    <table className="table-mob">
+                        <tbody>
+                            {invoice.items.map((item) => (
+                                <tr key={item.id}>
+                                    <td className="highlight-mob">{item.name}
+                                        <p>{item.quantity}*£{item.price}</p></td>
+                                    <td className="highlight-mob">£{item.total}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+
                     <div className="due">
-                        <p>Amount Due</p>
+                        <p className="due-desk">Amount Due</p>
+                        <p className="due-mob">Grand Total</p>
                         <h2>£1800.90</h2>
                     </div>
+                   
 
+                </div>
+                <div className="button-mob">
+                    <Button variant="edit" children="Edit" />
+                    <Button variant="danger" children="Delete" />
+                    <Button variant="primary" children="Mark as Paid" />
                 </div>
             </div>
         </div>
