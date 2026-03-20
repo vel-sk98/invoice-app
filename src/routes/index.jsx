@@ -33,12 +33,12 @@ function InvoiceList() {
                 </div>
             </div>
 
-            <EmptyState />
-            {/* <div className="invoice-list">
+            {/* <EmptyState /> */}
+            <div className="invoice-list">
                 <InvoiceCard invoiceData={data[0]} />
                 <InvoiceCard invoiceData={data[1]} />
                 <InvoiceCard invoiceData={data[2]} />
-            </div> */}
+            </div>
             <InvoiceForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} mode="new" />
 
         </div>
