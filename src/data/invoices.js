@@ -230,4 +230,4 @@ const invoices = [
   },
 ];
 
-export default invoices
+export default invoices;
