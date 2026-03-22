@@ -9,11 +9,11 @@ A responsive invoice management application built with React + Vite.
 - Create, edit and delete invoices
 - Mark invoices as paid
 - Persistent data with localStorage
-- Fully responsive — mobile and desktop
+- Fully responsive - mobile and desktop
 
 ## Tech Stack
 - React 18
-- React Router v6
+- TanStack Router
 - Plain CSS with CSS Variables
 - Vite
 
@@ -28,4 +28,4 @@ npm run dev
 _Coming soon_
 
 ## Live Demo
-_Coming soon — will be deployed on Vercel_
+_Coming soon - will be deployed on Vercel_
