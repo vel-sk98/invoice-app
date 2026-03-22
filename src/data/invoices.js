@@ -1,4 +1,4 @@
-const invoices = [
+const Invoices = [
   {
     id: "RT3080",
     createdAt: "2021-08-18",
@@ -230,4 +230,4 @@ const invoices = [
   },
 ];
 
-export default invoices;
+export default Invoices;

@@ -1,13 +1,17 @@
-import React from 'react'
+
 import arrow from '../../assets/icon-arrow-down.svg';
 import { useState } from 'react';
 import './FilterDropDown.css'
-const FilterDropDown = () => {
+const FilterDropDown = ({filteredData}) => {
     const [show, setShow] = useState(false);
-
 
     const statusFilter = () => {
         setShow(!show);
+    }
+
+    const handleChange = (event) => {
+            filteredData(event.target.value)
+
     }
 
     return (
@@ -19,9 +23,9 @@ const FilterDropDown = () => {
             </button>
             {show &&
                 <div className='content'>
-                    <label> <input type='checkbox' value="paid" /> Paid</label>
-                    <label> <input type='checkbox' value="pending" /> Pending</label>
-                    <label> <input type='checkbox' value="draft" /> Draft</label>
+                    <label> <input type='checkbox' value="paid" onChange={handleChange} /> Paid</label>
+                    <label> <input type='checkbox' value="pending" onChange={handleChange} /> Pending</label>
+                    <label> <input type='checkbox' value="draft" onChange={handleChange} /> Draft</label>
                 </div>
             }
 
