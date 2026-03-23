@@ -4,29 +4,27 @@ import Badge from "../components/Badge/Badge";
 import { Link } from "@tanstack/react-router";
 import arrow from '../assets/icon-arrow-left.svg';
 import Button from "../components/Button/Button";
+import { useContext } from "react";
+import { InvoiceContext } from "../context/InvoiceContext";
 
 export const Route = createFileRoute('/invoice/$id')({
     component: InvoiceDetail,
 })
 
-const invoice = {
-    id: "RT3080",
-    createdAt: "1 Aug 2021",
-    paymentDue: "19 Aug 2021",
-    description: "Re-branding",
-    status: "paid",
-    clientName: "Jensen Huang",
-    clientEmail: "jensenh@mail.com",
-    clientAddress: { street: "106 Kendell Street", city: "Sharrington", postCode: "NR24 5WQ", country: "UK" },
-    senderAddress: { street: "19 Union Terrace", city: "London", postCode: "E1 3EZ", country: "UK" },
-    items: [
-        { id: 123, name: "Brand Guidelines", quantity: 1, price: 1800.90, total: 1800.90 }
-    ],
-    total: 1800.90
-}
+const formatDate = (dateStr) => {
+    return new Date(dateStr).toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+    });
+};
+
+
 
 function InvoiceDetail() {
+    const { invoices } = useContext(InvoiceContext);
     const { id } = Route.useParams()
+    const invoice = invoices.find(inv => inv.id === id);
     return (
         <div className="invoice-detail">
 
@@ -42,11 +40,11 @@ function InvoiceDetail() {
                         <span>Status</span>
                         <Badge status={invoice.status} /> </label>
 
-                    
+
                     <Button variant="edit" children="Edit" />
                     <Button variant="danger" children="Delete" />
                     <Button variant="primary" children="Mark as Paid" />
-                       
+
                 </div>
                 <div className="status-bar-mobile">
                     <label className="status">
@@ -72,11 +70,11 @@ function InvoiceDetail() {
 
                         <div className="box1">
                             <p>Invoice Date</p>
-                            <h3>{invoice.createdAt}</h3>
+                            <h3>{formatDate(invoice.createdAt)}</h3>
                         </div>
                         <div className="box2">
                             <p>Payment Due</p>
-                            <h3>{invoice.paymentDue}</h3>
+                            <h3>{formatDate(invoice.paymentDue)}</h3>
                         </div>
 
                         <div className="box3">
@@ -132,9 +130,9 @@ function InvoiceDetail() {
                     <div className="due">
                         <p className="due-desk">Amount Due</p>
                         <p className="due-mob">Grand Total</p>
-                        <h2>£1800.90</h2>
+                        <h2>£ {invoice.total}</h2>
                     </div>
-                   
+
 
                 </div>
                 <div className="button-mob">

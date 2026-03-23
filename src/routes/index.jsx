@@ -19,15 +19,12 @@ function InvoiceList() {
     const filtered = (item) => {
         if (!checked.includes(item)) {
             setChecked((prev) => [...prev, item])
-            
+
         } else {
             setChecked(() => (
                 checked.filter((status) => status !== item)))
-            
         }
-        
     }
-
     const filteredInvoices =
         checked.length === 0 ? invoices :
             invoices.filter((invoice) => checked.includes(invoice.status));
@@ -42,7 +39,7 @@ function InvoiceList() {
 
                     <FilterDropDown filteredData={filtered} />
 
-                <button className="new-btn" onClick={() => setIsFormOpen(true)}>
+                    <button className="new-btn" onClick={() => setIsFormOpen(true)}>
                         <span className="plus">+</span>
                         <span className="new-desktop">New Invoice</span>
                         <span className="new-mobile">New</span>
@@ -52,7 +49,7 @@ function InvoiceList() {
             </div>
             {filteredInvoices.length > 0 ? <div className="invoice-list">
                 {filteredInvoices.map((item) => (
-                        <InvoiceCard invoiceData={item} key={item.id} />
+                    <InvoiceCard invoiceData={item} key={item.id} />
                 ))}
             </div> : <EmptyState />}
 

@@ -5,10 +5,10 @@ import { routeTree } from './routeTree.gen'
 import './styles/global.css'
 import App from './App.jsx'
 
-const router = createRouter({routeTree})
+const router = createRouter({ routeTree })
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </StrictMode>,
 )

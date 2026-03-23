@@ -9,16 +9,16 @@ const InvoiceContextProvider = ({ children }) => {
     const [invoices, setInvoices] = useLocalStorage('invoices', initialinvoices);
 
     function addInvoice() {
-        
+
     }
     function editInvoice() {
-        
+
     }
     function deleteInvoice() {
-        
+
     }
     function markAsPaid() {
-        
+
     }
 
 
@@ -27,6 +27,6 @@ const InvoiceContextProvider = ({ children }) => {
             {children}
         </InvoiceContext.Provider>
     )
-    
+
 }
 export default InvoiceContextProvider

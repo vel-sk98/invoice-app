@@ -7,17 +7,17 @@ import InvoiceContextProvider from "../context/InvoiceContext";
 export const Route = createRootRoute(
     {
         component: () => {
-            
+
             return (
                 <InvoiceContextProvider>
-                <div className="hero">
-                    <Sidebar/>
-                    <main className="hero-content">
-                        <Outlet/>
-                        
-                    </main>
+                    <div className="hero">
+                        <Sidebar />
+                        <main className="hero-content">
+                            <Outlet />
+
+                        </main>
                     </div>
-                </InvoiceContextProvider> 
+                </InvoiceContextProvider>
             )
         }
     }

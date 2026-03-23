@@ -2,7 +2,7 @@
 import arrow from '../../assets/icon-arrow-down.svg';
 import { useState } from 'react';
 import './FilterDropDown.css'
-const FilterDropDown = ({filteredData}) => {
+const FilterDropDown = ({ filteredData }) => {
     const [show, setShow] = useState(false);
 
     const statusFilter = () => {
@@ -10,7 +10,7 @@ const FilterDropDown = ({filteredData}) => {
     }
 
     const handleChange = (event) => {
-            filteredData(event.target.value)
+        filteredData(event.target.value)
 
     }
 
