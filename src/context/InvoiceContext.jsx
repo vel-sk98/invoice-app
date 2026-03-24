@@ -8,7 +8,8 @@ export const InvoiceContext = createContext();
 const InvoiceContextProvider = ({ children }) => {
     const [invoices, setInvoices] = useLocalStorage('invoices', initialinvoices);
 
-    function addInvoice() {
+    function addInvoice(newInvoice) {
+        setInvoices([...invoices, newInvoice]);
 
     }
     function editInvoice() {

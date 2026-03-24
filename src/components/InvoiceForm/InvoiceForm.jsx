@@ -1,11 +1,95 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './InvoiceForm.css';
 import icon from '../../assets/icon-delete.svg';
 import Button from '../Button/Button';
-import { Link } from "@tanstack/react-router";
 import arrow from '../../assets/icon-arrow-left.svg';
+import generateID from '../../utils/generateID';
+import calculateDueDate from '../../utils/calculateDueDate';
+import { InvoiceContext } from '../../context/InvoiceContext';
+
+const invoice = {
+    senderAddress: {
+        street: "",
+        city: "",
+        postCode: "",
+        country: "",
+    },
+    clientName: "",
+    clientEmail: "",
+    clientAddress: {
+        street: "",
+        city: "",
+        postCode: "",
+        country: "",
+    },
+    invoiceDate: "",
+    paymentTerms: "Net 30 days",
+    projectDescription: "",
+    items: []
+}
 
 const InvoiceForm = ({ isOpen, onClose, mode }) => {
+    const { addInvoice } = useContext(InvoiceContext)
+    const [formData, setFormData] = useState(invoice);
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        if (name.includes(".")) {
+            const [parent, field] = name.split(".");
+            setFormData({ ...formData, [parent]: { ...formData[parent], [field]: value } });
+
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
+    }
+
+    const handleItemChange = (e, index) => {
+        const { name, value } = e.target;
+        const updatedItem = [...formData.items];
+        updatedItem[index] = { ...updatedItem[index], [name]: value };
+
+        if (name === "quantity" || name === "price") {
+            updatedItem[index].total = parseFloat(updatedItem[index].quantity) * parseFloat(updatedItem[index].price);
+        }
+
+        setFormData({ ...formData, items: updatedItem })
+    }
+
+    const handleAddItem = () => {
+        setFormData({ ...formData, items: [...formData.items, { name: "", quantity: 0, price: 0, total: 0 }] })
+    }
+
+    const removeItem = (index) => {
+        setFormData({ ...formData, items: formData.items.filter((_, i) => i !== index) });
+
+    }
+
+    const handleSaveAndSend = () => {
+        const newInvoice = {
+            ...formData,
+            status: "pending", id: generateID(),
+            paymentDue: formData.invoiceDate ? calculateDueDate(formData.invoiceDate, formData.paymentTerms) : ""
+        };
+        addInvoice(newInvoice);
+        onClose();
+        setFormData(invoice);
+
+    };
+    const handleSaveDraft = () => {
+        const newInvoice = {
+            ...formData,
+            status: "draft", id: generateID(),
+            paymentDue:
+                formData.invoiceDate ? calculateDueDate(formData.invoiceDate, formData.paymentTerms) : ""
+
+        };
+        addInvoice(newInvoice);
+        onClose();
+        setFormData(invoice);
+    }
+
+
     return (
         <div>
             <div className={`overlay ${isOpen ? 'overlay--open' : ''}`}>
@@ -21,34 +105,72 @@ const InvoiceForm = ({ isOpen, onClose, mode }) => {
                 <div >
                     <p>Bill From</p>
                     <div className='bill-from'>
-                        <label className='bill1'>Street Address<input type='text' /></label>
-                        <label className='bill2'>City<input type='text' /></label>
-                        <label className='bill3'>Post Code<input type='text' /></label>
-                        <label className='bill4'>Country <input type='text' /></label>
+                        <label className='bill1'>Street Address
+                            <input type='text'
+                                onChange={handleChange}
+                                name='senderAddress.street' /></label>
+                        <label className='bill2'>City
+                            <input type='text'
+                                onChange={handleChange}
+                                name='senderAddress.city' /></label>
+                        <label className='bill3'>Post Code
+                            <input type='text'
+                                onChange={handleChange}
+                                name='senderAddress.postCode' /></label>
+                        <label className='bill4'>Country
+                            <input type='text'
+                                onChange={handleChange}
+                                name='senderAddress.country' /></label>
 
                     </div>
                 </div>
                 <div>
                     <p>Bill To</p>
                     <div className='bill-to'>
-                        <label className='bill-to1'>Client's Name<input type='text' /></label>
-                        <label className='bill-to2'>Client's Email<input type='text' /></label>
-                        <label className='bill-to3'>Street Address<input type='text' /></label>
-                        <label className='bill-to4'>City <input type='text' /></label>
-                        <label className='bill-to5' >Post Code <input type='text' /></label>
-                        <label className='bill-to6' >Country <input type='text' /></label>
+                        <label className='bill-to1'>Client's Name
+                            <input type='text'
+                                onChange={handleChange}
+                                name='clientName' /></label>
+                        <label className='bill-to2'>Client's Email
+                            <input type='text'
+                                onChange={handleChange}
+                                name='clientEmail' /></label>
+                        <label className='bill-to3'>Street Address
+                            <input type='text'
+                                onChange={handleChange}
+                                name='clientAddress.street' /></label>
+                        <label className='bill-to4'>City
+                            <input type='text'
+                                onChange={handleChange}
+                                name='clientAddress.city' /></label>
+                        <label className='bill-to5' >Post Code
+                            <input type='text'
+                                onChange={handleChange}
+                                name='clientAddress.postCode' /></label>
+                        <label className='bill-to6' >Country
+                            <input type='text'
+                                onChange={handleChange}
+                                name='clientAddress.country' /></label>
                     </div>
                     <div className='bill-to-sec'>
-                        <label className='bill-to7' >Invoice Date <input type='date' /></label>
+                        <label className='bill-to7' >Invoice Date
+                            <input type='date'
+                                onChange={handleChange}
+                                name='invoiceDate' /></label>
                         <label className='bill-to8' >Payment Terms
-                            <select>
-                                <option>Net 1 Day</option>
-                                <option>Net 7 days</option>
-                                <option>Net 14 days</option>
-                                <option>Net 30 days</option>
+                            <select onChange={handleChange}
+                                name='paymentTerms'>
+                                <option value={1}>Net 1 Day</option>
+                                <option value={7}>Net 7 days</option>
+                                <option value={14}> Net 14 days</option>
+                                <option value={30}>Net 30 days</option>
                             </select>
                         </label>
-                        <label className='bill-to9' >Project Description <input type='text' /></label>
+                        <label className='bill-to9' >Project Description
+                            <input type='text'
+                                onChange={handleChange}
+                                name='projectDescription' />
+                        </label>
 
                     </div>
                 </div>
@@ -66,13 +188,34 @@ const InvoiceForm = ({ isOpen, onClose, mode }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td className="highlight">Banner Design</td>
-                            <td>1</td>
-                            <td>156.00</td>
-                            <td className="highlight">156.00</td>
-                            <td><img src={icon} alt='delete' /></td>
-                        </tr>
+                        {formData.items.map((item, index) => (
+                            < tr key={index}>
+                                <td className="highlight">
+                                    <input type='text'
+                                        name='name'
+                                        value={item.name}
+                                        onChange={e => handleItemChange(e, index)} />
+                                </td>
+                                <td><input type="number"
+                                    name='quantity'
+                                    value={item.quantity}
+                                    onChange={e => handleItemChange(e, index)} /></td>
+                                <td><input type='number'
+                                    name='price'
+                                    value={item.price}
+                                    onChange={e => handleItemChange(e, index)} /></td>
+                                <td className="highlight">
+                                    <input type='number'
+                                        name='item.total'
+                                        value={item.total}
+                                        onChange={e => handleItemChange(e, index)}
+                                        readOnly
+                                    />
+                                </td>
+                                <td ><button onClick={() => removeItem(index)}><img src={icon} alt='delete' />
+                                </button></td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
 
@@ -80,17 +223,6 @@ const InvoiceForm = ({ isOpen, onClose, mode }) => {
                     <thead>
                         <tr>
                             <th colSpan="5">ItemName</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colSpan="5" className="highlight">Banner Design</td>
-                        </tr>
-                    </tbody>
-
-                    <thead>
-                        <tr>
-
                             <th>Qty</th>
                             <th>Price</th>
                             <th>Total</th>
@@ -98,20 +230,41 @@ const InvoiceForm = ({ isOpen, onClose, mode }) => {
                     </thead>
 
                     <tbody>
-                        <tr>
-
-                            <td>1</td>
-                            <td>156.00</td>
-                            <td className="highlight">156.00</td>
-                            <td><img src={icon} alt='delete' /></td>
-                        </tr>
+                        {formData.items.map((item, index) => (
+                            < tr key={index}>
+                                <td colSpan="5" className="highlight">
+                                    <input type='text'
+                                        name='name'
+                                        value={item.name}
+                                        onChange={e => handleItemChange(e, index)}
+                                    /></td>
+                                <td><input type="number"
+                                    name='quantity'
+                                    value={item.quantity}
+                                    onChange={e => handleItemChange(e, index)}
+                                /></td>
+                                <td><input
+                                    type='number'
+                                    name='price'
+                                    value={item.price}
+                                    onChange={e => handleItemChange(e, index)} /></td>
+                                <td className="highlight">
+                                    <input type='number'
+                                        name='item.total'
+                                        value={item.total}
+                                        onChange={e => handleItemChange(e, index)}
+                                        readOnly
+                                    /></td>
+                                <td ><button onClick={() => removeItem(index)}><img src={icon} alt='delete' />
+                                </button></td>
+                            </tr>))}
                     </tbody>
                 </table>
-                <button className="add-item-btn">+ Add New Item</button>
+                <button className="add-item-btn" onClick={handleAddItem}>+ Add New Item</button>
                 <div className='form-buttons'>
                     <Button variant='soft' children="Discard" onClick={onClose} />
-                    <Button variant='ghost' children="Save & Draft" />
-                    <Button variant='primary' children="Save & Send" />
+                    <Button variant='ghost' children="Save & Draft" onClick={handleSaveDraft} />
+                    <Button variant='primary' children="Save & Send" onClick={handleSaveAndSend} />
                 </div>
             </div>
         </div>
