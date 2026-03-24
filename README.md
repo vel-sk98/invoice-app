@@ -28,4 +28,5 @@ npm run dev
 _Coming soon_
 
 ## Live Demo
-_Coming soon - will be deployed on Vercel_
+We’ve deployed the app on Vercel - check it out here:
+👉 https://invoice-app-lemon-one.vercel.app/
