@@ -4,14 +4,16 @@ import Badge from "../components/Badge/Badge";
 import { Link } from "@tanstack/react-router";
 import arrow from '../assets/icon-arrow-left.svg';
 import Button from "../components/Button/Button";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { InvoiceContext } from "../context/InvoiceContext";
+import InvoiceForm from "../components/InvoiceForm/InvoiceForm";
 
 export const Route = createFileRoute('/invoice/$id')({
     component: InvoiceDetail,
 })
 
 const formatDate = (dateStr) => {
+    if (!dateStr) return "—";
     return new Date(dateStr).toLocaleDateString('en-GB', {
         day: '2-digit',
         month: 'short',
@@ -25,6 +27,7 @@ function InvoiceDetail() {
     const { invoices } = useContext(InvoiceContext);
     const { id } = Route.useParams()
     const invoice = invoices.find(inv => inv.id === id);
+    const [isFormOpen, setIsFormOpen] = useState(false);
     return (
         <div className="invoice-detail">
 
@@ -41,7 +44,7 @@ function InvoiceDetail() {
                         <Badge status={invoice.status} /> </label>
 
 
-                    <Button variant="edit" children="Edit" />
+                    <Button variant="edit" children="Edit" onClick={() => setIsFormOpen(true)} />
                     <Button variant="danger" children="Delete" />
                     <Button variant="primary" children="Mark as Paid" />
 
@@ -136,11 +139,12 @@ function InvoiceDetail() {
 
                 </div>
                 <div className="button-mob">
-                    <Button variant="edit" children="Edit" />
+                    <Button variant="edit" children="Edit" onClick={() => setIsFormOpen(true)} />
                     <Button variant="danger" children="Delete" />
                     <Button variant="primary" children="Mark as Paid" />
                 </div>
             </div>
+            <InvoiceForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} mode="edit" existingInvoice={invoice} />
         </div>
     )
 }

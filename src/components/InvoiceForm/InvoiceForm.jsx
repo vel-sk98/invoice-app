@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './InvoiceForm.css';
 import icon from '../../assets/icon-delete.svg';
 import Button from '../Button/Button';
@@ -28,9 +28,12 @@ const invoice = {
     items: []
 }
 
-const InvoiceForm = ({ isOpen, onClose, mode }) => {
-    const { addInvoice } = useContext(InvoiceContext)
-    const [formData, setFormData] = useState(invoice);
+const InvoiceForm = ({ isOpen, onClose, mode, existingInvoice }) => {
+    const { addInvoice, editInvoice } = useContext(InvoiceContext)
+    const [formData, setFormData] = useState(() => {
+        return mode === "edit" ? existingInvoice : invoice;
+    });
+
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -87,6 +90,11 @@ const InvoiceForm = ({ isOpen, onClose, mode }) => {
         addInvoice(newInvoice);
         onClose();
         setFormData(invoice);
+    };
+    const handleSaveChanges = () => {
+        const updatedInvoice = { ...formData };
+        editInvoice(updatedInvoice);
+        onClose();
     }
 
 
@@ -108,19 +116,27 @@ const InvoiceForm = ({ isOpen, onClose, mode }) => {
                         <label className='bill1'>Street Address
                             <input type='text'
                                 onChange={handleChange}
-                                name='senderAddress.street' /></label>
+                                name='senderAddress.street'
+                                value={formData.senderAddress.street}
+                            /></label>
                         <label className='bill2'>City
                             <input type='text'
                                 onChange={handleChange}
-                                name='senderAddress.city' /></label>
+                                name='senderAddress.city'
+                                value={formData.senderAddress.city}
+                            /></label>
                         <label className='bill3'>Post Code
                             <input type='text'
                                 onChange={handleChange}
-                                name='senderAddress.postCode' /></label>
+                                name='senderAddress.postCode'
+                                value={formData.senderAddress.postCode}
+                            /></label>
                         <label className='bill4'>Country
                             <input type='text'
                                 onChange={handleChange}
-                                name='senderAddress.country' /></label>
+                                name='senderAddress.country'
+                                value={formData.senderAddress.country}
+                            /></label>
 
                     </div>
                 </div>
@@ -130,36 +146,52 @@ const InvoiceForm = ({ isOpen, onClose, mode }) => {
                         <label className='bill-to1'>Client's Name
                             <input type='text'
                                 onChange={handleChange}
-                                name='clientName' /></label>
+                                name='clientName'
+                                value={formData.clientName}
+                            /></label>
                         <label className='bill-to2'>Client's Email
                             <input type='text'
                                 onChange={handleChange}
-                                name='clientEmail' /></label>
+                                name='clientEmail'
+                                value={formData.clientEmail}
+                            /></label>
                         <label className='bill-to3'>Street Address
                             <input type='text'
                                 onChange={handleChange}
-                                name='clientAddress.street' /></label>
+                                name='clientAddress.street'
+                                value={formData.clientAddress.street}
+                            /></label>
                         <label className='bill-to4'>City
                             <input type='text'
                                 onChange={handleChange}
-                                name='clientAddress.city' /></label>
+                                name='clientAddress.city'
+                                value={formData.clientAddress.city}
+                            /></label>
                         <label className='bill-to5' >Post Code
                             <input type='text'
                                 onChange={handleChange}
-                                name='clientAddress.postCode' /></label>
+                                name='clientAddress.postCode'
+                                value={formData.clientAddress.postCode}
+                            /></label>
                         <label className='bill-to6' >Country
                             <input type='text'
                                 onChange={handleChange}
-                                name='clientAddress.country' /></label>
+                                name='clientAddress.country'
+                                value={formData.clientAddress.country}
+                            /></label>
                     </div>
                     <div className='bill-to-sec'>
                         <label className='bill-to7' >Invoice Date
                             <input type='date'
                                 onChange={handleChange}
-                                name='invoiceDate' /></label>
+                                name='invoiceDate'
+                                value={formData.invoiceDate}
+                            /></label>
                         <label className='bill-to8' >Payment Terms
                             <select onChange={handleChange}
-                                name='paymentTerms'>
+                                name='paymentTerms'
+                                value={formData.paymentTerms}
+                            >
                                 <option value={1}>Net 1 Day</option>
                                 <option value={7}>Net 7 days</option>
                                 <option value={14}> Net 14 days</option>
@@ -169,7 +201,9 @@ const InvoiceForm = ({ isOpen, onClose, mode }) => {
                         <label className='bill-to9' >Project Description
                             <input type='text'
                                 onChange={handleChange}
-                                name='projectDescription' />
+                                name='projectDescription'
+                                value={formData.projectDescription}
+                            />
                         </label>
 
                     </div>
@@ -261,11 +295,14 @@ const InvoiceForm = ({ isOpen, onClose, mode }) => {
                     </tbody>
                 </table>
                 <button className="add-item-btn" onClick={handleAddItem}>+ Add New Item</button>
-                <div className='form-buttons'>
-                    <Button variant='soft' children="Discard" onClick={onClose} />
-                    <Button variant='ghost' children="Save & Draft" onClick={handleSaveDraft} />
-                    <Button variant='primary' children="Save & Send" onClick={handleSaveAndSend} />
-                </div>
+                {mode ==="edit" ? <div className='form-buttons'>
+                    <Button variant='soft' children="Cancel" onClick={onClose} />
+                    <Button variant='primary' children="Save Changes" onClick={handleSaveChanges}/>
+                </div> : <div className='form-buttons'>
+                        <Button variant='soft' children="Discard" onClick={onClose} />
+                        <Button variant='ghost' children="Save & Draft" onClick={handleSaveDraft} />
+                        <Button variant='primary' children="Save & Send" onClick={handleSaveAndSend} />
+                </div>}
             </div>
         </div>
     )

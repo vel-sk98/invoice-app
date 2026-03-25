@@ -3,6 +3,7 @@ import initialinvoices from '../data/invoices'
 import useLocalStorage from "../hooks/useLocalStorage";
 
 
+
 export const InvoiceContext = createContext();
 
 const InvoiceContextProvider = ({ children }) => {
@@ -12,7 +13,15 @@ const InvoiceContextProvider = ({ children }) => {
         setInvoices([...invoices, newInvoice]);
 
     }
-    function editInvoice() {
+    function editInvoice(updatedInvoice) {
+        const updated = invoices.map((inv) => {
+            if (inv.id === updatedInvoice.id) {
+                return updatedInvoice
+            } else {
+                return inv
+            }
+        })
+        setInvoices(updated);
 
     }
     function deleteInvoice() {
