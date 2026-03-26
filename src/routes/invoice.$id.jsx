@@ -7,6 +7,8 @@ import Button from "../components/Button/Button";
 import { useContext, useState } from "react";
 import { InvoiceContext } from "../context/InvoiceContext";
 import InvoiceForm from "../components/InvoiceForm/InvoiceForm";
+import { useNavigate } from "@tanstack/react-router";
+import DeleteModal from "../components/DeleteModal/DeleteModal";
 
 export const Route = createFileRoute('/invoice/$id')({
     component: InvoiceDetail,
@@ -24,14 +26,31 @@ const formatDate = (dateStr) => {
 
 
 function InvoiceDetail() {
-    const { invoices } = useContext(InvoiceContext);
+    const { invoices, deleteInvoice } = useContext(InvoiceContext);
     const { id } = Route.useParams()
-    const invoice = invoices.find(inv => inv.id === id);
     const [isFormOpen, setIsFormOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const invoice = invoices.find(inv => inv.id === id);
+    if (!invoice) return null;
+
+    const handleDelete = () => {
+        setIsModalOpen(true)
+    }
+    const handleConfirm = () => {
+        deleteInvoice(invoice.id)
+        navigate({ to: "/" })
+
+    }
     return (
         <div className="invoice-detail">
 
             <div className="invoice-detail-full">
+                {isModalOpen && <DeleteModal isOpen={isModalOpen}
+                    onCancel={() => setIsModalOpen(false)}
+                    onConfirm={handleConfirm}
+                    invoiceId={invoice.id} />}
                 <div>
                     <Link to="/" className="go-back">
                         <img src={arrow} alt="go-back" /> Go back
@@ -45,7 +64,7 @@ function InvoiceDetail() {
 
 
                     <Button variant="edit" children="Edit" onClick={() => setIsFormOpen(true)} />
-                    <Button variant="danger" children="Delete" />
+                    <Button variant="danger" children="Delete" onClick={handleDelete} />
                     <Button variant="primary" children="Mark as Paid" />
 
                 </div>
@@ -106,7 +125,7 @@ function InvoiceDetail() {
                         </thead>
                         <tbody>
                             {invoice.items.map((item) => (
-                                <tr key={item.id}>
+                                <tr key={item.name}>
                                     <td className="highlight">{item.name}</td>
                                     <td>{item.quantity}</td>
                                     <td>£{item.price}</td>
@@ -120,7 +139,7 @@ function InvoiceDetail() {
                     <table className="table-mob">
                         <tbody>
                             {invoice.items.map((item) => (
-                                <tr key={item.id}>
+                                <tr key={item.name}>
                                     <td className="highlight-mob">{item.name}
                                         <p>{item.quantity}*£{item.price}</p></td>
                                     <td className="highlight-mob">£{item.total}</td>
@@ -140,7 +159,7 @@ function InvoiceDetail() {
                 </div>
                 <div className="button-mob">
                     <Button variant="edit" children="Edit" onClick={() => setIsFormOpen(true)} />
-                    <Button variant="danger" children="Delete" />
+                    <Button variant="danger" children="Delete" onClick={handleDelete} />
                     <Button variant="primary" children="Mark as Paid" />
                 </div>
             </div>
