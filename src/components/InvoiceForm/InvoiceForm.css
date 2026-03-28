@@ -226,6 +226,9 @@
 .highlight {
     width: 100%;
 }
+.error {
+  color: red ;
+}
 
 /* --- Tablet / Desktop --- */
 
@@ -255,5 +258,8 @@
 
     .highlight {
         width: auto;
+    }
+    p .error{
+      color: red;
     }
 }
