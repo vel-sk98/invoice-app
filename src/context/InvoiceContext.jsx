@@ -29,7 +29,28 @@ const InvoiceContextProvider = ({ children }) => {
             prevInvoices.filter((inv) => inv.id !== id)
         );
     }
-    function markAsPaid() {
+    function markAsPaid(id) {
+        setInvoices((prevInvoices) =>
+            prevInvoices.map((inv) => {
+                if (inv.id === id) {
+                    if (inv.status === 'paid') {
+                        const Invoice = {
+                            ...inv,
+                            status: "pending"
+                        };
+                        return Invoice
+                    } else {
+                        const newInvoice = {
+                            ...inv,
+                            status: "paid"
+                        };
+                        return newInvoice
+                    }
+                } else {
+                    return inv
+                }  
+            })
+        );
 
     }
 

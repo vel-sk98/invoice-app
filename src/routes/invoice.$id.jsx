@@ -26,7 +26,7 @@ const formatDate = (dateStr) => {
 
 
 function InvoiceDetail() {
-    const { invoices, deleteInvoice } = useContext(InvoiceContext);
+    const { invoices, deleteInvoice, markAsPaid } = useContext(InvoiceContext);
     const { id } = Route.useParams()
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,6 +42,9 @@ function InvoiceDetail() {
         deleteInvoice(invoice.id)
         navigate({ to: "/" })
 
+    }
+    const handlePaid = () => {
+        markAsPaid(invoice.id);
     }
     return (
         <div className="invoice-detail">
@@ -65,7 +68,7 @@ function InvoiceDetail() {
 
                     <Button variant="edit" children="Edit" onClick={() => setIsFormOpen(true)} />
                     <Button variant="danger" children="Delete" onClick={handleDelete} />
-                    <Button variant="primary" children="Mark as Paid" />
+                    <Button variant="primary" children={invoice.status === "pending" ? "Mark as Paid" : "Mark as Pending"} onClick={handlePaid} />
 
                 </div>
                 <div className="status-bar-mobile">
@@ -160,7 +163,7 @@ function InvoiceDetail() {
                 <div className="button-mob">
                     <Button variant="edit" children="Edit" onClick={() => setIsFormOpen(true)} />
                     <Button variant="danger" children="Delete" onClick={handleDelete} />
-                    <Button variant="primary" children="Mark as Paid" />
+                    <Button variant="primary" children={invoice.status === "pending" ? "Mark as Paid" : "Mark as Pending"} onClick={handlePaid} />
                 </div>
             </div>
             <InvoiceForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} mode="edit" existingInvoice={invoice} />
