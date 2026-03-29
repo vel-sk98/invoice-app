@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import initialinvoices from '../data/invoices'
 import useLocalStorage from "../hooks/useLocalStorage";
 
@@ -7,7 +7,9 @@ export const InvoiceContext = createContext();
 
 const InvoiceContextProvider = ({ children }) => {
     const [invoices, setInvoices] = useLocalStorage('invoices', initialinvoices);
+    const [theme, setTheme] = useLocalStorage('theme', 'light');
     
+    useEffect(() => document.body.setAttribute('data-theme', theme), []);
 
     function addInvoice(newInvoice) {
         setInvoices([...invoices, newInvoice]);
@@ -53,10 +55,16 @@ const InvoiceContextProvider = ({ children }) => {
         );
 
     }
+    function toggleTheme() {
+        const newTheme = theme === "light" ? "dark" : "light";
+        setTheme(newTheme);
+        document.body.setAttribute("data-theme", newTheme);
+            
+    }
 
 
     return (
-        <InvoiceContext.Provider value={{ invoices, addInvoice, editInvoice, deleteInvoice, markAsPaid }}>
+        <InvoiceContext.Provider value={{ invoices, addInvoice, editInvoice, deleteInvoice, markAsPaid, theme, toggleTheme }}>
             {children}
         </InvoiceContext.Provider>
     )

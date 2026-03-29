@@ -5,6 +5,7 @@
     line-height: 15px;
     letter-spacing: -0.25px;
     padding: 18px 23px 15px 24px;
+    font-weight: 700;
 }
 .btn:hover{
     filter: brightness(1.2);
@@ -15,7 +16,7 @@
     opacity: 0.5;
 }
 .primary{
-    color: var( --color-white);
+    color: var( --color-dark-navy);
     background-color: var(--color-purple);
 }
 .edit{
@@ -23,12 +24,13 @@
     background-color: var(--color-smokewhite);
 }
 .danger{
-    color: var( --color-white);
+    color: var( --color-dark-navy);
     background-color: var(--color-red);
 }
 .soft{
     font-weight: 700;
     background-color:var( --color-white);
+    color: var(--color-dark-navy);
 }
 .ghost{
     background-color: var(--color-light-black);

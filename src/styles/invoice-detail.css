@@ -170,7 +170,7 @@ table {
 }
 
 .highlight-mob {
-    color: black;
+    color: var(--color-dark-navy);
 }
 
 td {
@@ -184,7 +184,7 @@ td {
 }
 
 .highlight {
-    color: black;
+    color: var(--color-dark-navy);
 }
 
 th {

@@ -21,7 +21,7 @@
     
 }
 .modal-box{
-    background: white;
+  background: var(--color-navy-light);
   padding: 20px;
   border-radius: 8px;
   position: relative;

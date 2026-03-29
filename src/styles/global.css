@@ -21,6 +21,7 @@
   --color-red-light:  #FF9797;
   --color-light-black:#373B53;
   --color-smokewhite: #F9FAFE;
+  --color-navy-light: #FFFFFF;
 
   --font-size-sm:  11px;
   --font-size-md:  12px;
@@ -33,6 +34,12 @@
   --radius-lg: 20px;
 
   --shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.10);
+}
+[data-theme="dark"] {
+    --color-off-white:  #141625;
+    --color-white:      #1E2139;
+    --color-navy-light: #252945;
+    --color-dark-navy:  #FFFFFF;
 }
 
 body{

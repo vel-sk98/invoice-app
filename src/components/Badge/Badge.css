@@ -16,6 +16,6 @@
     background-color: rgba(255, 143, 0, 0.06);
 }
 .badge--draft{ 
-    color: #373B53; 
-    background-color: rgba(223, 237, 250, 0);
+    color: var(--color-light-black); 
+    background-color: rgba(223, 237, 250, 0.2);
 }
