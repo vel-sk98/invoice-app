@@ -68,7 +68,7 @@ function InvoiceDetail() {
 
                     <Button variant="edit" children="Edit" onClick={() => setIsFormOpen(true)} />
                     <Button variant="danger" children="Delete" onClick={handleDelete} />
-                    <Button variant="primary" children={invoice.status === "pending" ? "Mark as Paid" : "Mark as Pending"} onClick={handlePaid} />
+                    <Button variant="primary" children={invoice.status === "paid" ? "Mark as Pending" : "Mark as Paid"} onClick={handlePaid} />
 
                 </div>
                 <div className="status-bar-mobile">

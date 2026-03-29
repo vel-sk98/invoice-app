@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import './InvoiceForm.css';
 import icon from '../../assets/icon-delete.svg';
 import Button from '../Button/Button';
@@ -36,9 +36,18 @@ const InvoiceForm = ({ isOpen, onClose, mode, existingInvoice }) => {
     const [formErrors, setFormErrors] = useState({});
 
 
+    useEffect(() => {
+        if (isOpen && mode === "edit") {
+            setFormData(existingInvoice)
+        }
+        if (isOpen && mode === "new") {
+            setFormData(invoice)
+        }
+    }, [isOpen]);
+
     const handleChange = (event) => {
         const { name, value } = event.target;
-
+        console.log("field changed:", name, "value:", value)
         if (name.includes(".")) {
             const [parent, field] = name.split(".");
             setFormData({ ...formData, [parent]: { ...formData[parent], [field]: value } });
@@ -109,6 +118,8 @@ const InvoiceForm = ({ isOpen, onClose, mode, existingInvoice }) => {
         const errors = validate(formData)
         setFormErrors(errors);
         console.log(errors)
+        console.log("formData status:", formData.status)
+        console.log("existingInvoice status:", existingInvoice.status)
         if (Object.keys(errors).length === 0) {
             setFormErrors({});
             const updatedInvoice = { ...formData };
@@ -391,7 +402,7 @@ const InvoiceForm = ({ isOpen, onClose, mode, existingInvoice }) => {
                     </tbody>
                 </table>
 
-                
+
                 <button className="add-item-btn" onClick={handleAddItem}>+ Add New Item</button>
 
                 {Object.keys(formErrors).length > 0 &&
@@ -399,11 +410,11 @@ const InvoiceForm = ({ isOpen, onClose, mode, existingInvoice }) => {
                 }
                 {mode === "edit" ? <div className='form-buttons'>
                     <Button variant='soft' children="Cancel" onClick={() => { onClose(); setFormErrors({}); }} />
-                    <Button variant='primary' children="Save Changes" onClick={handleSaveChanges}/>
+                    <Button variant='primary' children="Save Changes" onClick={handleSaveChanges} />
                 </div> : <div className='form-buttons'>
-                        <Button variant='soft' children="Discard" onClick={() => { onClose();  setFormErrors({}); }}  />
-                        <Button variant='ghost' children="Save & Draft" onClick={handleSaveDraft}/>
-                        <Button variant='primary' children="Save & Send" onClick={handleSaveAndSend}/>
+                    <Button variant='soft' children="Discard" onClick={() => { onClose(); setFormErrors({}); }} />
+                    <Button variant='ghost' children="Save & Draft" onClick={handleSaveDraft} />
+                    <Button variant='primary' children="Save & Send" onClick={handleSaveAndSend} />
                 </div>}
             </div>
         </div>
