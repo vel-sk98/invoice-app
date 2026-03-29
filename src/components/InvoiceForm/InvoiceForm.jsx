@@ -25,7 +25,8 @@ const invoice = {
     createdAt: "",
     paymentTerms: "Net 30 days",
     projectDescription: "",
-    items: []
+    items: [],
+    
 }
 
 const InvoiceForm = ({ isOpen, onClose, mode, existingInvoice }) => {
@@ -87,7 +88,8 @@ const InvoiceForm = ({ isOpen, onClose, mode, existingInvoice }) => {
             const newInvoice = {
                 ...formData,
                 status: "pending", id: generateID(),
-                paymentDue: formData.createdAt ? calculateDueDate(formData.createdAt, formData.paymentTerms) : ""
+                paymentDue: formData.createdAt ? calculateDueDate(formData.createdAt, formData.paymentTerms) : "",
+                total: formData.items.reduce((acc, item) => acc + item.total, 0)
             };
             addInvoice(newInvoice);
             onClose();
@@ -106,7 +108,8 @@ const InvoiceForm = ({ isOpen, onClose, mode, existingInvoice }) => {
                 ...formData,
                 status: "draft", id: generateID(),
                 paymentDue:
-                    formData.createdAt ? calculateDueDate(formData.createdAt, formData.paymentTerms) : ""
+                    formData.createdAt ? calculateDueDate(formData.createdAt, formData.paymentTerms) : "",
+                total: formData.items.reduce((acc, item)=> acc+item.total, 0)
 
             };
             addInvoice(newInvoice);
@@ -122,7 +125,7 @@ const InvoiceForm = ({ isOpen, onClose, mode, existingInvoice }) => {
         console.log("existingInvoice status:", existingInvoice.status)
         if (Object.keys(errors).length === 0) {
             setFormErrors({});
-            const updatedInvoice = { ...formData };
+            const updatedInvoice = { ...formData, total: formData.items.reduce((acc, item) => acc + item.total, 0) };
             editInvoice(updatedInvoice);
             onClose();
         }
