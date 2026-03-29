@@ -95,7 +95,7 @@ function InvoiceDetail() {
 
                         <div className="box1">
                             <p>Invoice Date</p>
-                            <h3>{formatDate(invoice.invoiceDate)}</h3>
+                            <h3>{formatDate(invoice.createdAt)}</h3>
                         </div>
                         <div className="box2">
                             <p>Payment Due</p>

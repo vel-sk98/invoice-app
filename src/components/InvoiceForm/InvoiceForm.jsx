@@ -22,7 +22,7 @@ const invoice = {
         postCode: "",
         country: "",
     },
-    invoiceDate: "",
+    createdAt: "",
     paymentTerms: "Net 30 days",
     projectDescription: "",
     items: []
@@ -78,7 +78,7 @@ const InvoiceForm = ({ isOpen, onClose, mode, existingInvoice }) => {
             const newInvoice = {
                 ...formData,
                 status: "pending", id: generateID(),
-                paymentDue: formData.invoiceDate ? calculateDueDate(formData.invoiceDate, formData.paymentTerms) : ""
+                paymentDue: formData.createdAt ? calculateDueDate(formData.createdAt, formData.paymentTerms) : ""
             };
             addInvoice(newInvoice);
             onClose();
@@ -97,7 +97,7 @@ const InvoiceForm = ({ isOpen, onClose, mode, existingInvoice }) => {
                 ...formData,
                 status: "draft", id: generateID(),
                 paymentDue:
-                    formData.invoiceDate ? calculateDueDate(formData.invoiceDate, formData.paymentTerms) : ""
+                    formData.createdAt ? calculateDueDate(formData.createdAt, formData.paymentTerms) : ""
 
             };
             addInvoice(newInvoice);
@@ -154,8 +154,8 @@ const InvoiceForm = ({ isOpen, onClose, mode, existingInvoice }) => {
         if (!values.clientAddress.country) {
             errors.clientCountry = "Country is required"
         }
-        if (!values.invoiceDate) {
-            errors.invoiceDate = "Date is required"
+        if (!values.createdAt) {
+            errors.createdAt = "Date is required"
         }
         if (!values.projectDescription) {
             errors.projectDescription = "Describe you Project"
@@ -276,10 +276,10 @@ const InvoiceForm = ({ isOpen, onClose, mode, existingInvoice }) => {
                         <label className='bill-to7' >Invoice Date
                             <input type='date'
                                 onChange={handleChange}
-                                name='invoiceDate'
-                                value={formData.invoiceDate}
+                                name='createdAt'
+                                value={formData.createdAt}
                             />
-                            <span className='error'>{formErrors.invoiceDate}</span>
+                            <span className='error'>{formErrors.createdAt}</span>
                         </label>
                         <label className='bill-to8' >Payment Terms
                             <select onChange={handleChange}
