@@ -391,17 +391,19 @@ const InvoiceForm = ({ isOpen, onClose, mode, existingInvoice }) => {
                     </tbody>
                 </table>
 
-                {Object.keys(formErrors).length > 0 &&
-                    <p className='error'>All fields must be filled and item list must have at least one item</p>
-                }
+                
                 <button className="add-item-btn" onClick={handleAddItem}>+ Add New Item</button>
+
+                {Object.keys(formErrors).length > 0 &&
+                    <span className='error'>All fields must be filled and item list must have at least one item</span>
+                }
                 {mode === "edit" ? <div className='form-buttons'>
-                    <Button variant='soft' children="Cancel" onClick={onClose} />
-                    <Button variant='primary' children="Save Changes" onClick={handleSaveChanges} />
+                    <Button variant='soft' children="Cancel" onClick={() => { onClose(); setFormErrors({}); }} />
+                    <Button variant='primary' children="Save Changes" onClick={handleSaveChanges}/>
                 </div> : <div className='form-buttons'>
-                    <Button variant='soft' children="Discard" onClick={onClose} />
-                    <Button variant='ghost' children="Save & Draft" onClick={handleSaveDraft} />
-                    <Button variant='primary' children="Save & Send" onClick={handleSaveAndSend} />
+                        <Button variant='soft' children="Discard" onClick={() => { onClose();  setFormErrors({}); }}  />
+                        <Button variant='ghost' children="Save & Draft" onClick={handleSaveDraft}/>
+                        <Button variant='primary' children="Save & Send" onClick={handleSaveAndSend}/>
                 </div>}
             </div>
         </div>

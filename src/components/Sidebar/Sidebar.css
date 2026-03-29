@@ -35,7 +35,8 @@
 }
 .theme{
     width:20px;
-    margin:15px
+    margin:15px;
+    cursor:pointer;
 }
 .sidebar-bottom hr{
     height: 103px;  

@@ -186,6 +186,11 @@
     display: block;
 }
 
+.table-mobile button :hover {
+        filter: brightness(0) saturate(100%) invert(40%) sepia(100%) saturate(500%) hue-rotate(320deg);
+    }
+
+
 /* --- Add Item Button --- */
 
 .add-item-btn {
@@ -249,6 +254,9 @@
         display: block;
         table-layout: fixed
     }
+    .table-desktop button :hover {
+        filter: brightness(0) saturate(100%) invert(40%) sepia(100%) saturate(500%) hue-rotate(320deg);
+    }
 
     .table-mobile {
         display: none;
@@ -265,7 +273,7 @@
     .highlight {
         width: auto;
     }
-    p .error{
+    .error{
       color: red;
     }
 }
