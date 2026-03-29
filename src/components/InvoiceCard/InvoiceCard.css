@@ -16,6 +16,11 @@
     border-radius: 8px;
     cursor: pointer;
     padding: 16px;
+    border: 2px solid transparent; 
+    transition: border-color 0.3s ease;
+}
+.grid-container-mobile:hover{
+    border-color: var(--color-purple);
 }
 
 .grid-item {
@@ -80,7 +85,12 @@
         background-color: var(--color-navy-light);
         border-radius: 8px;
         cursor: pointer;
+        border: 2px solid transparent;  
+        transition: border-color 0.3s ease;
     }
+    .grid-container-desktop:hover{
+           border-color: var(--color-purple);
+     }
 
     .grid-item {
         padding: 10px;

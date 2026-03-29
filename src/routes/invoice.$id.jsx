@@ -50,10 +50,10 @@ function InvoiceDetail() {
         <div className="invoice-detail">
 
             <div className="invoice-detail-full">
-                {isModalOpen && <DeleteModal isOpen={isModalOpen}
+                <DeleteModal isOpen={isModalOpen}
                     onCancel={() => setIsModalOpen(false)}
                     onConfirm={handleConfirm}
-                    invoiceId={invoice.id} />}
+                    invoiceId={invoice.id} />
                 <div>
                     <Link to="/" className="go-back">
                         <img src={arrow} alt="go-back" /> Go back
